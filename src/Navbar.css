@@ -1,0 +1,30 @@
+header {
+	display: flex;
+	background-color: orangered;
+	justify-content: space-between;
+	align-items: center;
+	color: white;
+}
+
+header * {
+	margin: 15px 20px;
+}
+
+header a {
+	cursor: pointer;
+}
+
+@media (max-width: 400px) {
+	header {
+		flex-direction: column;
+	}
+	
+	header * {
+		margin-bottom: 5px;
+	}
+	
+	header a {
+		border-bottom: 2px solid white;
+		margin-bottom: 20px;
+	}
+}

@@ -1,0 +1,84 @@
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 7px solid orangered;
+}
+
+.recipe-title-input {
+	margin-left: 12px;
+}
+
+.recipe-form input[type=text] {
+    padding: 5px 8px;
+    box-sizing: border-box;
+}
+
+.recipe-form-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+.recipe-form-line input {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+.buttons {
+  border: 1px solid gray;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 0 10px 1px 10px;
+  margin: 8px 0;
+  align-self: flex-end;
+  font-size: 1.1em;
+}
+
+.close-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 0.9em;
+  color: #777;
+  text-shadow: 0 1px 0 #fff;
+  align-self: flex-end;
+}
+
+.recipe-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input,
+textarea {
+	border: 1px solid gray;
+}
+
+@media (max-width: 550px) {
+	.recipe-form {
+		max-width: 260px;
+	}
+	
+	.recipe-form-line input {
+		width: 80%;
+		margin-left: 10px;
+		padding: 1px;
+	}
+	
+	#recipe-instructions-input {
+		font-size: 12px;
+		margin-top: 10px;
+		margin-left: 10px;
+		width: 90%;
+	}
+}
