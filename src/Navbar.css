@@ -14,7 +14,11 @@ header a {
 	cursor: pointer;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 550px) {
+	header h1 {
+		font-weight: 500;
+	}
+	
 	header {
 		flex-direction: column;
 	}
