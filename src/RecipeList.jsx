@@ -3,10 +3,14 @@ import Recipe from './Recipe';
 import './RecipeList.css';
 
 class RecipeList extends Component {
+	
 	render() {
 		const {onDelete} = this.props;
 		const recipes = this.props.recipes.map((r, index) => (
-			<Recipe key={r.id} {...r} onDelete={onDelete}/>
+			<Recipe 
+				key={r.id} 
+				{...r} 
+				onDelete={onDelete} />
 		));
 		
 		return (
@@ -18,3 +22,7 @@ class RecipeList extends Component {
 }
 
 export default RecipeList;
+
+
+// WEBPACK FOOTER //
+// ./src/RecipeList.jsx

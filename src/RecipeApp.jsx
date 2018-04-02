@@ -37,7 +37,7 @@ class RecipeApp extends Component {
 			}
 		});
 	}
-	
+  
 	onDelete(id) {
 		const recipes = this.state.recipes.filter(r => r.id !== id);
 		localStorage.setItem("recipes", JSON.stringify(recipes));
@@ -53,11 +53,19 @@ class RecipeApp extends Component {
 				<RecipeInput 
 					onSave={this.handleSave}
 					onClose={() => this.setState({showForm: false})} />
-			: null}
-			<RecipeList onDelete={this.onDelete} recipes={this.state.recipes}/>
+		    	: null}
+			<RecipeList 
+				onDelete={this.onDelete} 
+				uploadedImage={this.state.uploadedImage} 
+				recipes={this.state.recipes} />
 			</div>
-    );
-  }
+		);
+	}
 }
 
 export default RecipeApp;
+
+
+
+// WEBPACK FOOTER //
+// ./src/RecipeApp.jsx

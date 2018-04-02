@@ -115,3 +115,8 @@ export function unregister() {
     });
   }
 }
+
+
+
+// WEBPACK FOOTER //
+// ./src/registerServiceWorker.js

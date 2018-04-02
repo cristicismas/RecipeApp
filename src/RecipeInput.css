@@ -1,41 +1,70 @@
+.recipe-form-container {
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .recipe-form {
   display: flex;
+  -ms-flex-direction: column;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   margin: 10px;
   padding: 15px;
   border-radius: 10px;
-  border: 7px solid orangered;
+  border: 7px solid #F79700;
 }
 
 .recipe-title-input {
-	margin-left: 12px;
+  margin-left: 12px;
 }
 
 .recipe-form input[type=text] {
-    padding: 5px 8px;
-    box-sizing: border-box;
+  padding: 5px 8px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.recipe-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.recipe-form input,
+.recipe-form textarea {
+  border: 1px solid gray;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .recipe-form-line {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      align-items: center;
   margin-top: 5px;
+}
+
+.recipe-form-line:last-of-type {
+  -ms-flex-direction: column;
+      flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .recipe-form-line input {
   margin-left: 15px;
-  margin-top: 5px;
 }
 
 .buttons {
   border: 1px solid gray;
   background-color: #fff;
   border-radius: 6px;
-  padding: 0 10px 1px 10px;
+  padding: 2px 10px 1px 10px;
   margin: 8px 0;
   align-self: flex-end;
   font-size: 1.1em;
@@ -53,32 +82,31 @@
   align-self: flex-end;
 }
 
-.recipe-form-container {
+.delete-and-insert-ing-buttons {
+  width: 100%;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-input,
-textarea {
-	border: 1px solid gray;
+.delete-and-insert-ing-buttons button:first-child {
+  margin-right: 15px;
 }
 
 @media (max-width: 550px) {
-	.recipe-form {
-		max-width: 260px;
-	}
+  .recipe-form {
+    max-width: 260px;
+  }
 	
-	.recipe-form-line input {
-		width: 80%;
-		margin-left: 10px;
-		padding: 1px;
-	}
+  .recipe-form-line input {
+    width: 80%;
+    margin-left: 10px;
+    padding: 1px;
+  }
 	
-	#recipe-instructions-input {
-		font-size: 12px;
-		margin-top: 10px;
-		margin-left: 10px;
-		width: 90%;
-	}
+  #recipe-instructions-input {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 90%;
+  }
 }

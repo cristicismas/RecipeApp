@@ -1,6 +1,7 @@
 header {
+	display: -ms-flexbox;
 	display: flex;
-	background-color: orangered;
+	background-color: #F79700;
 	justify-content: space-between;
 	align-items: center;
 	color: white;

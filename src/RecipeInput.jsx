@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import './RecipeInput.css';
 
 class RecipeInput extends Component {
-  static defaultProps = {
-    onClose() {},
-    onSave() {}
-  }
   
   constructor(props) {
     super(props);
@@ -17,18 +13,49 @@ class RecipeInput extends Component {
     };
     
     this.handleChange = this.handleChange.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this);
     this.handleNewIngredient = this.handleNewIngredient.bind(this);
     this.handleChangeIng = this.handleChangeIng.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value});
   }
   
-  handleNewIngredient(e) {
+  handleImageUpload(e) {
+    var fileInput = document.getElementById('img-file-input');
+    var file = fileInput.files[0];
+    var thisContext = this;
+
+    // Make sure image is jpeg / jpg / png
+    if (/\.(jpe?g|png)$/i.test(file.name)) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        thisContext.setState({img: e.target.result});
+
+        document.getElementById('recipe-img-input').value = '';
+        document.getElementById('recipe-img-input').disabled = true;
+      }
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  handleRemoveIngredient(e) {
     const {ingredients} = this.state;
-    this.setState({ingredients: [...ingredients, '']});
+	if (ingredients.length > 1) {
+      this.setState({ingredients: ingredients.slice(0, -1)});
+    }
+  }
+
+  handleNewIngredient(e) {
+    const ING_LIMIT = 50;
+    const {ingredients} = this.state;
+    if (ingredients.length < ING_LIMIT)
+      this.setState({ingredients: [...ingredients, '']});
   }
   
   handleChangeIng(e) {
@@ -66,7 +93,8 @@ class RecipeInput extends Component {
             size={45}
             autoComplete="off"
             placeholder=" Ingredient"
-            onChange={this.handleChangeIng} />
+            onChange={this.handleChangeIng}
+            required />
         </label>
       </div>
     ));
@@ -91,7 +119,8 @@ class RecipeInput extends Component {
               value={title}
               size={42}
               autoComplete="off"
-              onChange={this.handleChange}/>
+              onChange={this.handleChange}
+              required />
           </div>
           <label
             htmlFor='recipe-instructions-input'
@@ -108,15 +137,28 @@ class RecipeInput extends Component {
             cols='50'
             autoComplete='off'
             value={instructions}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange} 
+            required />
+            
+          <label>Ingredients</label>
+          <div className="delete-and-insert-ing-buttons">
+            <button
+              type="button"
+              onClick={this.handleRemoveIngredient}
+              className="buttons"
+            >
+              -
+            </button>
+            <button
+              type="button"
+              onClick={this.handleNewIngredient}
+              className="buttons"
+            >
+              +
+            </button>
+          </div>
           {inputs}
-          <button
-            type="button"
-            onClick={this.handleNewIngredient}
-            className="buttons"
-          >
-            +
-          </button>
+          
           <div className='recipe-form-line'>
             <label htmlFor='recipe-img-input'>Image Url</label>
             <input
@@ -128,6 +170,13 @@ class RecipeInput extends Component {
               size={36}
               autoComplete='off'
               onChange={this.handleChange} />
+          </div>
+          <div className="recipe-form-line">
+          	<p>Or pick an image from your own device: </p>
+            <input
+              id="img-file-input"
+              type="file"
+              onChange={this.handleImageUpload} />
           </div>
           <button
             type="submit"
@@ -143,3 +192,7 @@ class RecipeInput extends Component {
 }
 
 export default RecipeInput;
+
+
+// WEBPACK FOOTER //
+// ./src/RecipeInput.jsx

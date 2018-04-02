@@ -17,3 +17,7 @@ class Navbar extends Component {
 }
 
 export default Navbar;
+
+
+// WEBPACK FOOTER //
+// ./src/Navbar.jsx
