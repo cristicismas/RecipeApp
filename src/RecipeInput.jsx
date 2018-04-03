@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import './RecipeInput.css';
 
+function clearUrlInput(thisContext) {
+  thisContext.setState({img: ''});
+}
+
 class RecipeInput extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      instructions: "",
+      instructions: '',
       ingredients: [''],
       img: ''
     };
@@ -19,29 +23,52 @@ class RecipeInput extends Component {
     this.handleChangeIng = this.handleChangeIng.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
+  componentDidMount() {
+    const {recipeToEdit} = this.props;
+    
+    if (recipeToEdit !== null) {
+      this.setState({ 
+		  title: recipeToEdit.title,
+          instructions: recipeToEdit.instructions,
+          ingredients: recipeToEdit.ingredients,
+          img: recipeToEdit.img
+      });
+      
+      clearUrlInput(this);
+    }
+  }
+  
+  
+  
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value});
   }
   
   handleImageUpload(e) {
-    var fileInput = document.getElementById('img-file-input');
-    var file = fileInput.files[0];
-    var thisContext = this;
+    const MAX_IMAGE_SIZE = 300000; // 300kb
+    let fileInput = document.getElementById('img-file-input');
+    let file = fileInput.files[0];
+    let thisContext = this;
 
-    // Make sure image is jpeg / jpg / png
-    if (/\.(jpe?g|png)$/i.test(file.name)) {
-      var reader = new FileReader();
+    // limit uploaded image size
+    if (file.size < MAX_IMAGE_SIZE) {
+      // Make sure image is jpeg / jpg / png
+      if (/\.(jpe?g|png)$/i.test(file.name)) {
+        const reader = new FileReader();
 
-      reader.onload = function(e) {
-        thisContext.setState({img: e.target.result});
+        reader.onload = function(e) {
+          thisContext.setState({img: e.target.result});
 
-        document.getElementById('recipe-img-input').value = '';
-        document.getElementById('recipe-img-input').disabled = true;
+          clearUrlInput(this);
+        }
+
+        reader.readAsDataURL(file);
       }
-
-      reader.readAsDataURL(file);
+    } else {
+      window.alert("Image too big. Try compressing it or selecting another image");
     }
+    
   }
 
   handleRemoveIngredient(e) {
@@ -74,12 +101,13 @@ class RecipeInput extends Component {
       instructions: '',
       ingredients: [''],
       img: ''
-    })
+    });
   }
   
   render() {
     const {title, instructions, img, ingredients} = this.state;
     const {onClose} = this.props;
+    
     let inputs = ingredients.map((ing, i) => (
       <div
         className="recipe-form-line"
@@ -170,6 +198,11 @@ class RecipeInput extends Component {
               size={36}
               autoComplete='off'
               onChange={this.handleChange} />
+            <button
+              type="button"
+              id="clear-url-input"
+              onClick={() => this.setState({img: ''})}
+            >X</button>
           </div>
           <div className="recipe-form-line">
           	<p>Or pick an image from your own device: </p>

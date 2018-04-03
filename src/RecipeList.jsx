@@ -5,12 +5,13 @@ import './RecipeList.css';
 class RecipeList extends Component {
 	
 	render() {
-		const {onDelete} = this.props;
+		const {onDelete, onEdit} = this.props;
 		const recipes = this.props.recipes.map((r, index) => (
 			<Recipe 
 				key={r.id} 
 				{...r} 
-				onDelete={onDelete} />
+				onDelete={onDelete}
+				onEdit={onEdit} />
 		));
 		
 		return (

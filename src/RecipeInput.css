@@ -60,6 +60,18 @@
   margin-left: 15px;
 }
 
+#clear-url-input {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#clear-url-input:hover {
+  background-color: #fff;
+}
+
 .buttons {
   border: 1px solid gray;
   background-color: #fff;

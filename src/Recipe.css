@@ -38,6 +38,12 @@
 	border-radius: 4px;
 }
 
+.action-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin: 15px 10px 10px;
+}
+
 .delete-confirmation {
 	animation: 0.7s normal slidedown;
 	padding: 0 10px 10px;

@@ -74,7 +74,13 @@ class Recipe extends Component {
 					</ul>
 					<h4>Instructions:</h4>
 					<p>{instructions}</p>
-					<button type="button" onClick={() => this.setState({showConfirmation: true})}>DELETE</button>
+               		
+               		<hr />
+                	<div className="action-buttons">
+                		<button type="button" onClick={() => this.setState({showConfirmation: true})}>DELETE</button>
+						<button type="button" onClick={() => this.props.onEdit(id)}>EDIT</button>
+                	</div>
+					
 					{this.state.showConfirmation ? <DeleteConfirmation /> : ''}
 				</div>
 			</div>
