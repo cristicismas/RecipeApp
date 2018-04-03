@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import './RecipeInput.css';
 
-function clearUrlInput(thisContext) {
-  thisContext.setState({img: ''});
-}
-
 class RecipeInput extends Component {
   
   constructor(props) {
@@ -16,6 +12,7 @@ class RecipeInput extends Component {
       img: ''
     };
     
+    this.clearUrlInput = this.clearUrlInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this);
@@ -28,18 +25,20 @@ class RecipeInput extends Component {
     const {recipeToEdit} = this.props;
     
     if (recipeToEdit !== null) {
+      this.clearUrlInput();
+      
       this.setState({ 
 		  title: recipeToEdit.title,
           instructions: recipeToEdit.instructions,
           ingredients: recipeToEdit.ingredients,
           img: recipeToEdit.img
       });
-      
-      clearUrlInput(this);
     }
   }
   
-  
+  clearUrlInput() {
+    this.setState({img: ''});
+  }
   
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value});
@@ -58,9 +57,8 @@ class RecipeInput extends Component {
         const reader = new FileReader();
 
         reader.onload = function(e) {
+          thisContext.clearUrlInput();
           thisContext.setState({img: e.target.result});
-
-          clearUrlInput(this);
         }
 
         reader.readAsDataURL(file);
