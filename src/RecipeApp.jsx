@@ -15,6 +15,11 @@ class RecipeApp extends Component {
 		this.state = {
 			recipes: JSON.parse(localStorage.getItem("recipes")),
 			recipeToEdit: null,
+			// If browser is Safari, set maxRecipes to 16, otherwise set it to 32 (because of localStorage limits).
+			maxRecipes: 
+				(navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1)
+					? 16
+					: 33,
 			// If there are no recipes, set the nextRecipeId to 0, otherwise set it to the last recipe id incremented by one.
 			nextRecipeId:
 				JSON.parse(localStorage.getItem("recipes")).length === 0
@@ -32,13 +37,8 @@ class RecipeApp extends Component {
 	handleSave(recipe) {
 		this.setState((prevState, props) => {
 			const newRecipe = {...recipe, id: this.state.nextRecipeId};
-			try {
-              localStorage.setItem("recipes", JSON.stringify([...this.state.recipes, newRecipe]));
-            } catch (e) {
-              if (e.code === 22) {
-                window.alert("Maximum storage has been reached. Cannot save this recipe. Try deleteling other recipes or saving them with lower resolution images.");
-              }
-            }
+			localStorage.setItem("recipes", JSON.stringify([...this.state.recipes, newRecipe]));
+			
 			return {
 				recipes: JSON.parse(localStorage.getItem("recipes")),
 				nextRecipeId: prevState.nextRecipeId + 1,
@@ -83,28 +83,14 @@ class RecipeApp extends Component {
 	}
   
     onNewRecipe() {
+		const {maxRecipes} = this.state
 		let recipesNumber = JSON.parse(localStorage.getItem('recipes')).length;
 		
-		// Safari only supports 5MB on localStorage, which means ~16 recipes with 300kb images.
-		const maxRecipeNumberOnSafari = 16;
-		// Chrome and other browsers support 10MB on localStorage, which is ~33 recipes.
-		const maxRecipeNumber = 33;
-		
-		// Check if browser is safari to know the size of localStorage
-		if (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
-			if (recipesNumber < maxRecipeNumberOnSafari) {
-				this.setState({showForm: true});
-			}
-			else {
-				window.alert("Maximum recipes number exceeded. Please delete other recipes to make room for another one.");
-			}
-		} else {
-			if (recipesNumber < maxRecipeNumber) {
-				this.setState({showForm: true});
-			}
-			else {
-				window.alert("Maximum recipes number exceeded. Please delete other recipes to make room for another one.");
-			}
+		if (recipesNumber < maxRecipes) {
+			this.setState({showForm: true});
+		}
+		else {
+			window.alert("Maximum number of recipes exceeded. Please delete other recipes to make room for another one.");
 		}
 	}
 	
@@ -112,7 +98,9 @@ class RecipeApp extends Component {
 		const {showForm} = this.state;
 		return (
 			<div className="App">
-			<Navbar onNewRecipe={this.onNewRecipe} />
+			<Navbar onNewRecipe={this.onNewRecipe}
+					recipesStored={this.state.recipes.length}
+					maxRecipes={this.state.maxRecipes} />
 			{showForm ? 
 				<RecipeInput 
 					onSave={this.handleSave}
