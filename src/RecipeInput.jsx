@@ -14,6 +14,7 @@ class RecipeInput extends Component {
     
     this.clearUrlInput = this.clearUrlInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.isSpaceLeft = this.isSpaceLeft.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this);
     this.handleNewIngredient = this.handleNewIngredient.bind(this);
@@ -28,10 +29,10 @@ class RecipeInput extends Component {
       this.clearUrlInput();
       
       this.setState({ 
-		  title: recipeToEdit.title,
-          instructions: recipeToEdit.instructions,
-          ingredients: recipeToEdit.ingredients,
-          img: recipeToEdit.img
+        title: recipeToEdit.title,
+        instructions: recipeToEdit.instructions,
+        ingredients: recipeToEdit.ingredients,
+        img: recipeToEdit.img
       });
     }
   }
@@ -42,6 +43,17 @@ class RecipeInput extends Component {
   
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value});
+  }
+  
+  // Checks to see if there is space left for the image in localStorage
+  isSpaceLeft(image) {
+    try {
+      localStorage.setItem("test", image);
+      localStorage.removeItem("test");
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
   
   handleImageUpload(e) {
@@ -57,14 +69,17 @@ class RecipeInput extends Component {
         const reader = new FileReader();
 
         reader.onload = function(e) {
-          thisContext.clearUrlInput();
-          thisContext.setState({img: e.target.result});
+          if (thisContext.isSpaceLeft(e.target.result)) {
+            thisContext.clearUrlInput();
+            thisContext.setState({img: e.target.result});
+          } else {
+            window.alert("No more space left. Please consider deleting other recipes to make room for another one.")
+          }
         }
-
         reader.readAsDataURL(file);
       }
     } else {
-      window.alert("Image too big. Try compressing it or selecting another image");
+      window.alert("Image size is too big. Try compressing it or selecting another image.");
     }
     
   }

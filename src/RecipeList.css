@@ -1,8 +1,8 @@
 .recipeList {
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-	flex-wrap: wrap;
-	margin-top: 20px;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }

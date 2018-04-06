@@ -1,97 +1,97 @@
 .recipe-card {
-	width: 500px;
-	min-width: 240px;
-	margin: 1%;
-	border: 1px solid lightgray;
-	background: white;
-	border-radius: 0 0 2px 2px;
-	box-shadow: 0 2px 2px 0 lightgray;
-	margin-bottom: 20px;
+  width: 500px;
+  min-width: 240px;
+  margin: 1%;
+  border: 1px solid lightgray;
+  background: white;
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 2px 2px 0 lightgray;
+  margin-bottom: 20px;
 }
 
 .recipe-card img {
-	width: 100%;
+  width: 100%;
 }
 
 .recipe-title {
-	font-size: 25px;
-	text-align: center;
-	margin: 10px 0;
+  font-size: 25px;
+  text-align: center;
+  margin: 10px 0;
 }
 
 .card-content * {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .card-content {
-	padding: 16px;
+  padding: 16px;
 }
 
 .card-content ul {
-	list-style: circle;
+  list-style: circle;
 }
 
 .card-content button {
-	background-color: #fff;
-	border: 2px solid gray;
-	padding: 5px;
-	border-radius: 4px;
+  background-color: #fff;
+  border: 2px solid gray;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .action-buttons {
-	display: flex;
-	justify-content: space-between;
-	margin: 15px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 10px 10px;
 }
 
 .delete-confirmation {
-	animation: 0.7s normal slidedown;
-	padding: 0 10px 10px;
-	margin: 30px 10px 10px;
-	background-color: #f5f5f5;
-    border: 2px dashed red;
-	border-radius: 10px;
+  animation: 0.7s normal slidedown;
+  padding: 0 10px 10px;
+  margin: 30px 10px 10px;
+  background-color: #f5f5f5;
+  border: 2px dashed red;
+  border-radius: 10px;
 }
 
 @-webkit-keyframes slidedown {
-	0% {
-		-webkit-transform: translateY(-20px);
-		        transform: translateY(-20px);
-	}
-	
-	100% {
-		-webkit-transform: translateY(0);
-		        transform: translateY(0);
-	}
+  0% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
 }
 
 @keyframes slidedown {
-	0% {
-		-webkit-transform: translateY(-20px);
-		        transform: translateY(-20px);
-	}
-	
-	100% {
-		-webkit-transform: translateY(0);
-		        transform: translateY(0);
-	}
+  0% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
 }
 
 .delete-confirmation button {
-	width: 50px;
-	font-weight: bold;
-	margin: 5px;
+  width: 50px;
+  font-weight: bold;
+  margin: 5px;
 }
 
 .delete-confirmation #accept-confirmation {
-	margin-left: 5px;
-	background-color: red;
-	border: 2px solid black;
-	color: white;
+  margin-left: 5px;
+  background-color: red;
+  border: 2px solid black;
+  color: white;
 }
 
 @media (max-width: 500px) {
-	.recipe-card {
-		width: 70%;
-	}
+  .recipe-card {
+    width: 70%;
+  }
 }

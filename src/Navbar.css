@@ -1,41 +1,32 @@
 header {
-	display: -ms-flexbox;
-	display: flex;
-	background-color: #F79700;
-	justify-content: space-between;
-	align-items: center;
-	color: white;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #F79700;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
 }
 
 header * {
-	margin: 15px 20px;
+  margin: 15px 20px;
 }
 
 header a {
-	cursor: pointer;
-}
-
-header #recipes-left-number {
-	text-decoration: underline;
-	margin: 0;
-}
-
-header #no-recipes-left {
-	text-decoration: underline;
+  cursor: pointer;
 }
 
 @media (max-width: 645px) {
-	header {
-		flex-direction: column;
-	}
-	
-	header * {
-		margin-bottom: 5px;
-		font-weight: 500;
-	}
-	
-	header a {
-		border-bottom: 1.5px solid white;
-		margin-bottom: 20px;
-	}
+  header {
+    flex-direction: column;
+  }
+
+  header * {
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  header a {
+    border-bottom: 1.5px solid white;
+    margin-bottom: 20px;
+  }
 }
