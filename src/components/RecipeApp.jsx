@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 import RecipeList from './RecipeList';
 import RecipeInput from './RecipeInput';
-import './RecipeApp.css';
+import '../styles/RecipeApp.css';
 
 class RecipeApp extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Recipe from './Recipe';
-import './RecipeList.css';
+import '../styles/RecipeList.css';
 
 class RecipeList extends Component {
 	
@@ -15,7 +15,11 @@ class RecipeList extends Component {
 
     return (
       <div className="recipeList">
-        {recipes}
+        {
+          recipes.length > 0 ?
+          recipes :
+          <div className="center"><h3 id="guide">Click on "New Recipe" to add a new recipe!</h3></div>
+        }
       </div>
     );
   }

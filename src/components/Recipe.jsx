@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Recipe.css';
+import '../styles/Recipe.css';
 
 function validateImageURL(url) {
   // Regex for normal image extention
